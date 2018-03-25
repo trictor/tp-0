@@ -1,7 +1,7 @@
 import Text.Show.Functions
 
-data chiste = chiste {
-  contenido :: String
+data Chiste = Chiste {
+  contenido :: String,
   likes :: Int
 } deriving (Show)
 
