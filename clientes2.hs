@@ -1,8 +1,8 @@
 import Text.Show.Functions
 
 data chiste = chiste {
-  contenido :: string
-  likes :: int
+  contenido :: String
+  likes :: Int
 } deriving (Show)
 
 nuevocontenido uncontenido unchiste = unchiste{contenido = uncontenido}
