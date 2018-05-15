@@ -1,47 +1,39 @@
-esmultiplodetres numero = (mod numero 3) == 0
-esmultiplodedos numero = (igualacero.divisor) numero
-igualacero numero = numero ==0
-divisor numero = mod numero 2
-cubodenumero numero = numero * numero * numero
-area base altura = base * altura
-decelafar celcius = celcius * 1.80 + 32
-defaracel fahrenheit = (fahrenheit-32)/1.80
-hacefriof grados = decelafar grados < 8
-dispersion med1 med2 med3 = max(max med1 med2) med3 - min(min med1 med2) med3
-diasparejos med1 med2 med3 = dispersion med1 med2 med3 < 30
-diaslocos med1 med2 med3 =dispersion med1 med2 med3 >1000
-diasnormales med1 med2 med3 = not(diasparejos med1 med2 med3) && not(diaslocos med1 med2 med3)
-siguiente = (1+)
-mitad = (/2)
-inversa = (1/)
-raizcuadrada numero = numero^1/2
-inversaraizcuadrada numero = (inversa.raizcuadrada) numero
-elevaralaN numero = (^) numero
-resultadopar numero =(.) (esmultiplodedos) (elevaralaN numero)
-mejor funcion1 funcion2 numero= max (funcion1 numero) (funcion2 numero)
-frecuencia = [80, 100, 120, 128, 130, 123, 125]
-promedio lista = sum lista /  fromInteger(toInteger(length lista ))
-ubicacion minutos = minutos / 10
-frecuenciaminutos lista minutos =(!!) lista  minutos
-frecuenciahasta minutos lista = take minutos lista
-thrd (_,_,c) = c
-existany funcion tupla = funcion (fst tupla) || funcion (snd tupla)
-capicua lista = concat lista == reverse(concat lista)
-palabraalrevez lista =reverse(concat lista)
-promediolistadelista lista = map (promedio) lista
-exist funcion lista = any (funcion) lista
-aplicarfunciones lista numero = map (numero) lista
-mejoresnotas lista = map (maximum) lista
-aprobaron lista = minimum lista > 4
-pasaron lista = filter aprobaron lista
-primerospares lista = takeWhile even lista
-comomaximo12 numero = min 12 numero
-comominimo0 numero = max 0 numero
-subirdos numero = numero + 2
-subirhabilidad lista = map (comomaximo12.comominimo0.subirdos) lista
-cambiarhabilidad funcion lista = map (comomaximo12.comominimo0.funcion) lista
-aplicarpar funcion tupla = funcion tupla
-duraciondellamadas = (("horarioreducido",[20,10,25,15]),("horariornormal",[10,5,8,2,9,10]))
-cuandohablomasminutos tupla = max ((sum.snd.fst) tupla) ((sum.snd.snd) tupla)
-cuandohizomasllamadas tupla = max ((length.snd.fst) tupla) ((length.snd.snd) tupla)
-promediosinaplazos lista = filter (>4) (map (promedio) lista)
+fibonachi 0 = 1
+fibonachi 1 = 1
+fibonachi numero = (numero - 1) + fibonachi (numero-2)
+
+productodelista [] = 1
+productodelista (cabeza:cola) = cabeza * productodelista cola
+
+alreves [] = []
+alreves (x:xs) = alreves xs ++ [x]
+
+diferencia (x:[]) = x - 0
+diferencia (x:y:xs) =  (x - y) : diferencia (y:xs)
+
+esmenora20 [] = []
+esmenora20 (x:xs) | x < 20 = x : esmenora20 xs
+                  | otherwise = esmenora20 xs
+
+sontodosiguales [] = True
+sontodosiguales (x:y:xs) = (x == y) && sontodosiguales xs
+
+esmultiplodealguno numero lista = any ((== 0).mod numero) lista
+
+promediolista lista = div (sum lista)  (length lista)
+
+--sinextremos [] = []
+--sinextremos (x:xs) | maximum (x:xs) == x || minimum (x:xs) == x = xs
+
+aplicarfuncion funcion numero = funcion numero
+
+aplicarlistadefunciones lista numero = foldr aplicarfuncion numero lista
+
+subirhabilidad [] = []
+subirhabilidad (x:xs) | x < 4 = 4 : subirhabilidad xs
+                      | otherwise = x : subirhabilidad xs
+
+intercalar _ [] = []
+intercalar expresion (x:xs) = (x:expresion:(intercalar expresion xs))
+
+primerosdivisores numero lista = takeWhile ((==0).mod numero) lista
